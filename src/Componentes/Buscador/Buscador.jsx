@@ -3,7 +3,7 @@ import "./Buscador.css";
 import Pokeball from '../../imagenes/Pokeball.png'
 import Arrow from '../../imagenes/Arrow.svg'
 
-const Buscador = (props) => {
+const Buscador = ({pokemones}) => {
   return (
     <div>
       <nav>

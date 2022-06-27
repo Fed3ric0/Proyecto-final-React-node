@@ -1,7 +1,7 @@
 import "./App.css";
 
 function App() {
-  const Pokemones = [
+  const pokemones = [
     {
       name: "Aron",
       id: 304,
@@ -156,7 +156,7 @@ function App() {
       SPD: 43,
     },
   ];
-  return <div className="App"></div>;
+  return <div className="App"><Buscador pokemones={pokemones}/></div>;
 }
 
 export default App;
