@@ -1,11 +1,16 @@
 import "./App.css";
+import React from "react";
+import Buscador from "./Componentes/Buscador/Buscador";
+import Detalles from "./Componentes/Detalles/Detalles";
+import TarjetaPokemon from "./Componentes/TarjetaPokemon/TarjetaPokemon";
+import imgAron from "./imagenes/aron.png";
 
 function App() {
   const pokemones = [
     {
       name: "Aron",
       id: 304,
-      image: "../imagenes/aron.png",
+      image: { imgAron },
       type: ["Steel", "Rock"],
       weight: 60.0,
       height: 0.4,
@@ -156,7 +161,13 @@ function App() {
       SPD: 43,
     },
   ];
-  return <div className="App"><Buscador pokemones={pokemones}/></div>;
+  return (
+    <div className="App">
+      <Buscador pokemones={pokemones} />
+      <Detalles />
+      <TarjetaPokemon />
+    </div>
+  );
 }
 
 export default App;
