@@ -1,36 +1,3 @@
-.contenedorPokemones {
-  max-width: 30%;
-  max-height: 30%;
-  border: 1px solid black;
-  border-radius: 5%;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr 3fr 1fr;
-  grid-template-areas:
-    "id"
-    "foto"
-    "nombre";
-}
-.tarjetaId {
-  grid-area: id;
-  display: flex;
-  justify-content: flex-end;
-  margin: 0;
-  padding: 10px;
-}
-
-.tarjetaImg {
-  grid-area: foto;
-  width: 50%;
-}
-.tarjetaNombre {
-  grid-area: nombre;
-  margin: 0;
-  border-radius: 0 0 10% 10%;
-  display: flex;
-  justify-content: center;
-}
-
 /*-------------------------------------------------------------------------------*/
 
 .nav1 {
@@ -58,8 +25,6 @@ input {
 }
 ul {
   display: grid;
-  width: 100%;
-  height: 50vh;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
   gap: 10px;
@@ -67,6 +32,6 @@ ul {
 li {
   background-color: aquamarine;
   list-style: none;
-  width: 20px;
-  height: 20px;
+  width: 100%;
+  height: 50%;
 }

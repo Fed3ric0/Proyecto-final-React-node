@@ -2,22 +2,11 @@ import React from "react";
 import "./Buscador.css";
 import Pokeball from "../../imagenes/Pokeball.png";
 import Arrow from "../../imagenes/Arrow.svg";
+import TarjetaPokemon from "../TarjetaPokemon/TarjetaPokemon";
 
 const Buscador = ({ pokemones }) => {
   const mostrarPokemones = () => {
-    return pokemones.map((pokemones) => (
-      <li>
-        <div className="contenedorPokemones">
-          <p className="tarjetaId">{pokemones.id}</p>
-
-          <center>
-            <img className="tarjetaImg" src={pokemones.image} alt="foto" />
-          </center>
-
-          <h6 className="tarjetaNombre">{pokemones.name}</h6>
-        </div>
-      </li>
-    ));
+    return pokemones.map((elemento) => <TarjetaPokemon pokemon={elemento} />);
   };
 
   return (

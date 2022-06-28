@@ -1,18 +1,20 @@
 import React from "react";
 import "./TarjetaPokemon.css";
-import Foto from "../../imagenes/bulbasaur.png";
 
-const TarjetaPokemon = () => {
+const TarjetaPokemon = ({ pokemon }) => {
+  let foto = require(`../../imagenes/${pokemon.name.toLowerCase()}.png`);
   return (
-    <div className="contenedor">
-      <p className="tarjetaId">id</p>
+    <li>
+      <div className="contenedorPokemones">
+        <p className="tarjetaId">{pokemon.id}</p>
 
-      <center>
-        <img className="tarjetaImg" src={Foto} alt="foto" />
-      </center>
+        <center>
+          <img className="tarjetaImg" src={foto} alt="foto" />
+        </center>
 
-      <h3 className="tarjetaNombre">nombre</h3>
-    </div>
+        <h6 className="tarjetaNombre">{pokemon.name}</h6>
+      </div>
+    </li>
   );
 };
 

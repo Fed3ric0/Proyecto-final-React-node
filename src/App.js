@@ -2,7 +2,6 @@ import "./App.css";
 import React from "react";
 import Buscador from "./Componentes/Buscador/Buscador";
 import Detalles from "./Componentes/Detalles/Detalles";
-import TarjetaPokemon from "./Componentes/TarjetaPokemon/TarjetaPokemon";
 import imgAron from "./imagenes/aron.png";
 
 function App() {
@@ -165,7 +164,6 @@ function App() {
     <div className="App">
       <Buscador pokemones={pokemones} />
       <Detalles />
-      <TarjetaPokemon />
     </div>
   );
 }
