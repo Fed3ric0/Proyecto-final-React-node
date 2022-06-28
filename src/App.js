@@ -2,14 +2,13 @@ import "./App.css";
 import React from "react";
 import Buscador from "./Componentes/Buscador/Buscador";
 import Detalles from "./Componentes/Detalles/Detalles";
-import imgAron from "./imagenes/aron.png";
 
 function App() {
   const pokemones = [
     {
       name: "Aron",
+      color: "#8789D0",
       id: 304,
-      image: { imgAron },
       type: ["Steel", "Rock"],
       weight: 60.0,
       height: 0.4,
@@ -25,8 +24,8 @@ function App() {
     },
     {
       name: "Bulbasaur",
+      color: "#74CB48",
       id: 1,
-      image: "../imagenes/bulbasaur.png",
       type: ["Grass", "Poison"],
       weight: 6.9,
       height: 0.7,
@@ -42,8 +41,8 @@ function App() {
     },
     {
       name: "Butterfree",
+      color: "#A78723",
       id: 12,
-      image: "../imagenes/butterfree.png",
       type: ["Bug", "Flying"],
       weight: 32,
       height: 1.1,
@@ -59,8 +58,8 @@ function App() {
     },
     {
       name: "Charmander",
+      color: "#F57D31",
       id: 4,
-      image: "../imagenes/charmander.png",
       type: "Fire",
       weight: 8.5,
       height: 0.6,
@@ -76,8 +75,8 @@ function App() {
     },
     {
       name: "Ditto",
+      color: "#AAA67F",
       id: 132,
-      image: "../imagenes/ditto.png",
       type: "Normal",
       weight: 4.0,
       height: 0.3,
@@ -93,8 +92,8 @@ function App() {
     },
     {
       name: "Gastly",
+      color: "#70559B",
       id: 92,
-      image: "../imagenes/gastly.png",
       type: ["Ghost", "Type"],
       weight: 0.1,
       height: 1.3,
@@ -110,8 +109,8 @@ function App() {
     },
     {
       name: "Mew",
+      color: "#FB5584",
       id: 152,
-      image: "../imagenes/mew.png",
       type: "Psychic",
       weight: 4.0,
       height: 0.4,
@@ -127,8 +126,8 @@ function App() {
     },
     {
       name: "Pikachu",
+      color: "#F9CF30",
       id: 25,
-      image: "../imagenes/pikachu.png",
       type: "Electric",
       weight: 6.0,
       height: 0.4,
@@ -144,8 +143,8 @@ function App() {
     },
     {
       name: "Squirtle",
+      color: "#6493EB",
       id: 7,
-      image: "../imagenes/squirtle.png",
       type: "Water",
       weight: 9.0,
       height: 0.5,

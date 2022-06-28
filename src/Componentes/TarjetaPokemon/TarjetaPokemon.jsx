@@ -4,15 +4,22 @@ import "./TarjetaPokemon.css";
 const TarjetaPokemon = ({ pokemon }) => {
   let foto = require(`../../imagenes/${pokemon.name.toLowerCase()}.png`);
   return (
-    <li>
+    <li style={{ borderColor: pokemon.color }}>
       <div className="contenedorPokemones">
-        <p className="tarjetaId">{pokemon.id}</p>
+        <p style={{ color: pokemon.color }} className="tarjetaId">
+          #{pokemon.id}
+        </p>
 
         <center>
           <img className="tarjetaImg" src={foto} alt="foto" />
         </center>
 
-        <h6 className="tarjetaNombre">{pokemon.name}</h6>
+        <h6
+          style={{ backgroundColor: pokemon.color }}
+          className="tarjetaNombre"
+        >
+          {pokemon.name}
+        </h6>
       </div>
     </li>
   );
