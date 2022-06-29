@@ -1,0 +1,17 @@
+.contenedor {
+    background-color: aquamarine;
+}
+
+.arriba {
+    display: flex;
+    justify-content: space-between;
+    padding: 2% 10% 0 10%;
+}
+
+.flechaNombre {
+    display: flex;
+}
+
+.abajo {
+    text-align: center;
+}

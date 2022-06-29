@@ -1,5 +1,6 @@
 import "./App.css";
 import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Buscador from "./Componentes/Buscador/Buscador";
 import Detalles from "./Componentes/Detalles/Detalles";
 
@@ -23,23 +24,6 @@ function App() {
       SPD: 30,
     },
     {
-      name: "Bulbasaur",
-      color: "#74CB48",
-      id: 1,
-      type: ["Grass", "Poison"],
-      weight: 6.9,
-      height: 0.7,
-      moves: "Chlorophyll Overgrow",
-      description:
-        "there is a plant seed on its back right from the day this Pokemon is born. the seed slowly grows larger",
-      HP: 45,
-      APK: 49,
-      DEF: 49,
-      SATK: 65,
-      SDEF: 65,
-      SPD: 45,
-    },
-    {
       name: "Butterfree",
       color: "#A78723",
       id: 12,
@@ -56,6 +40,7 @@ function App() {
       SDEF: 80,
       SPD: 70,
     },
+
     {
       name: "Charmander",
       color: "#F57D31",
@@ -89,6 +74,23 @@ function App() {
       SATK: 48,
       SDEF: 48,
       SPD: 48,
+    },
+    {
+      name: "Bulbasaur",
+      color: "#74CB48",
+      id: 1,
+      type: ["Grass", "Poison"],
+      weight: 6.9,
+      height: 0.7,
+      moves: "Chlorophyll Overgrow",
+      description:
+        "there is a plant seed on its back right from the day this Pokemon is born. the seed slowly grows larger",
+      HP: 45,
+      APK: 49,
+      DEF: 49,
+      SATK: 65,
+      SDEF: 65,
+      SPD: 45,
     },
     {
       name: "Gastly",
@@ -161,10 +163,20 @@ function App() {
   ];
   return (
     <div className="App">
-      <Buscador pokemones={pokemones} />
-      <Detalles />
+
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Buscador pokemones={pokemones} />} />
+          <Route path="detalles" element={<Detalles />} />
+        </Routes>
+      </BrowserRouter>
+
+      {/* <Buscador pokemones={pokemones} /> */}
+      {/* <Detalles pokemones={pokemones} /> */}
     </div>
   );
 }
+
+
 
 export default App;
