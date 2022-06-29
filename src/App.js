@@ -10,10 +10,10 @@ function App() {
       name: "Aron",
       color: "#8789D0",
       id: 304,
-      type: ["Steel", "Rock"],
+      type: ["Steel  ",  "  Rock"],
       weight: 60.0,
       height: 0.4,
-      moves: ["Sturdy", "Rock-Head"],
+      moves: ["Sturdy  ", "Rock-Head"],
       description:
         "it eats iron ore - and sometimes railroad tracks - to build up the the steel armor that protects its body.",
       HP: 50,
@@ -27,10 +27,10 @@ function App() {
       name: "Butterfree",
       color: "#A78723",
       id: 12,
-      type: ["Bug", "Flying"],
+      type: ["Bug   ", "Flying"],
       weight: 32,
       height: 1.1,
-      moves: ["Compound-Eyes", "Tinted-Lens"],
+      moves: ["Compound-Eyes   ", "Tinted-Lens"],
       description:
         "in battle, it flaps its wings at great speed to release highly toxic dust into the air",
       HP: 80,
@@ -48,7 +48,7 @@ function App() {
       type: "Fire",
       weight: 8.5,
       height: 0.6,
-      moves: ["Mega-Punch", "Fire-Punch"],
+      moves: ["Mega-Punch   ", "Fire-Punch"],
       description:
         "it has a preference for hot things. when it rains, steam is said to spout from the tip of his tail.",
       HP: 39,
@@ -79,7 +79,7 @@ function App() {
       name: "Bulbasaur",
       color: "#74CB48",
       id: 1,
-      type: ["Grass", "Poison"],
+      type: ["Grass    ", "Poison"],
       weight: 6.9,
       height: 0.7,
       moves: "Chlorophyll Overgrow",
@@ -96,7 +96,7 @@ function App() {
       name: "Gastly",
       color: "#70559B",
       id: 92,
-      type: ["Ghost", "Type"],
+      type: ["Ghost    ", "Type"],
       weight: 0.1,
       height: 1.3,
       moves: "Levitate",
@@ -133,7 +133,7 @@ function App() {
       type: "Electric",
       weight: 6.0,
       height: 0.4,
-      moves: ["Mega-Punch", "Pay-Day"],
+      moves: ["Mega-Punch   ", "Pay-Day"],
       description:
         "Pikachu that can generate powerful electricity have cheek sact that are extra soft and super stretchy.",
       HP: 35,
@@ -150,7 +150,7 @@ function App() {
       type: "Water",
       weight: 9.0,
       height: 0.5,
-      moves: ["Torrent", "Rain-Dish"],
+      moves: ["Torrent   ", "Rain-Dish"],
       description:
         "When it retracts its long neck into its shell, it squirts out  water with vigorous force.",
       HP: 44,
@@ -163,11 +163,13 @@ function App() {
   ];
   return (
     <div className="App">
-
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Buscador pokemones={pokemones} />} />
-          <Route path="detalles" element={<Detalles />} />
+          <Route
+            path="detalles/:nombre"
+            element={<Detalles pokemones={pokemones} />}
+          />
         </Routes>
       </BrowserRouter>
 
@@ -176,7 +178,5 @@ function App() {
     </div>
   );
 }
-
-
 
 export default App;

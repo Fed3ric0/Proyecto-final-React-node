@@ -5,7 +5,6 @@ import Pokeball from "../../imagenes/Pokeball.png";
 import Arrow from "../../imagenes/Arrow.svg";
 import TarjetaPokemon from "../TarjetaPokemon/TarjetaPokemon";
 
-
 const Buscador = ({ pokemones }) => {
   const mostrarPokemones = () => {
     return listaDePokemones.map((elemento) => (
@@ -24,24 +23,28 @@ const Buscador = ({ pokemones }) => {
 
   const [ordenarPorId, setOrdenarPorId] = useState(false);
   const ordenar = () => {
-    if (ordenarPorId===false) {
-       const listaOrdenada = pokemones.sort((a, b) => {
-      return a.id - b.id;
-    });
-    setlistaDePokemones(listaOrdenada);
-    setOrdenarPorId(true)
-  } else{
-       const listaOrdenada = pokemones.sort(function (a, b) {
-      let x = a.name.toLowerCase();
-      let y = b.name.toLowerCase();
-      if (x < y) { return -1; }
-      if (x > y) { return 1; }
-      return 0;
-    });
-    setlistaDePokemones(listaOrdenada);
-    setOrdenarPorId(false)
+    if (ordenarPorId === false) {
+      const listaOrdenada = pokemones.sort((a, b) => {
+        return a.id - b.id;
+      });
+      setlistaDePokemones(listaOrdenada);
+      setOrdenarPorId(true);
+    } else {
+      const listaOrdenada = pokemones.sort(function (a, b) {
+        let x = a.name.toLowerCase();
+        let y = b.name.toLowerCase();
+        if (x < y) {
+          return -1;
+        }
+        if (x > y) {
+          return 1;
+        }
+        return 0;
+      });
+      setlistaDePokemones(listaOrdenada);
+      setOrdenarPorId(false);
+    }
   };
-  }
   return (
     <div className="contenedor">
       <nav>
@@ -51,7 +54,8 @@ const Buscador = ({ pokemones }) => {
             <h1> Pokédex</h1>
           </div>
           <div className="logostitulo">
-            <h4>#</h4> <img onClick={ordenar} src={Arrow} alt="flecha" />
+            <h4>{ordenarPorId ? "#" : "A Z"}</h4>{" "}
+            <img onClick={ordenar} src={Arrow} alt="flecha" />
           </div>
         </div>
         <input
