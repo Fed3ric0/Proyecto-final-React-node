@@ -4,15 +4,16 @@ import "./Buscador.css";
 import Pokeball from "../../imagenes/Pokeball.png";
 import Arrow from "../../imagenes/Arrow.svg";
 import TarjetaPokemon from "../TarjetaPokemon/TarjetaPokemon";
-import Detalles from "../Detalles/Detalles";
+
 
 const Buscador = ({ pokemones }) => {
-  const [listaDePokemones, setlistaDePokemones] = useState(pokemones);
   const mostrarPokemones = () => {
     return listaDePokemones.map((elemento) => (
       <TarjetaPokemon pokemon={elemento} />
     ));
   };
+
+  const [listaDePokemones, setlistaDePokemones] = useState(pokemones);
 
   const filtrar = (evento) => {
     const listaDePokemones = pokemones.filter((pokemon) =>
@@ -21,16 +22,16 @@ const Buscador = ({ pokemones }) => {
     setlistaDePokemones(listaDePokemones);
   };
 
-  /*const ordenar = () => {
-    const listaOrdenada = pokemones.sort((a, b) => {
+  const [ordenarPorId, setOrdenarPorId] = useState(false);
+  const ordenar = () => {
+    if (ordenarPorId===false) {
+       const listaOrdenada = pokemones.sort((a, b) => {
       return a.id - b.id;
     });
     setlistaDePokemones(listaOrdenada);
-    console.log(listaOrdenada)
-  };*/
-
-  const ordenar = () => {
-    const listaOrdenada = pokemones.sort(function (a, b) {
+    setOrdenarPorId(true)
+  } else{
+       const listaOrdenada = pokemones.sort(function (a, b) {
       let x = a.name.toLowerCase();
       let y = b.name.toLowerCase();
       if (x < y) { return -1; }
@@ -38,9 +39,9 @@ const Buscador = ({ pokemones }) => {
       return 0;
     });
     setlistaDePokemones(listaOrdenada);
-    console.log(listaOrdenada)
+    setOrdenarPorId(false)
   };
-
+  }
   return (
     <div className="contenedor">
       <nav>
