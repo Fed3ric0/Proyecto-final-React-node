@@ -1,48 +1,47 @@
 .contenedor {
   background-color: #f7f7f7;
   padding: 0 20px;
+  max-width: 900px;
+  margin: auto;
 }
+
 .nav1 {
   display: flex;
   justify-content: space-between;
 }
+
 .logostitulo {
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
+
 .fotologo {
   width: 30px;
   height: 30px;
   margin-right: 15px;
 }
+
 input {
   width: 100%;
   height: 30px;
   border: 1px solid #e0e0e0;
   border-radius: 20px;
 }
+
 .iconoPlaceHolder {
   text-align: center;
   background-image: url("../../imagenes/search_FILL0_wght400_GRAD0_opsz48.png");
   background-repeat: no-repeat;
   background-size: 25px;
-  background-position: left center;
+  background-position-y: 3px;
+  background-position-x: 3px;
 }
+
 ul {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
-  gap: 10px;
+  grid-template-rows: auto;
+  gap: 15px;
   padding: 0;
-}
-.tarjetaPk {
-  list-style: none;
-  border: 2px solid;
-  border-radius: 5%;
-  color: white;
-  background-color: #ffffff;
-}
-li:hover {
-  transform: scale(1.2);
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }

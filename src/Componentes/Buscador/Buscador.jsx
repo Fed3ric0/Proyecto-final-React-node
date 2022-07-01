@@ -13,7 +13,6 @@ const Buscador = ({ pokemones }) => {
   };
 
   const [listaDePokemones, setlistaDePokemones] = useState(pokemones);
-
   const filtrar = (evento) => {
     const listaDePokemones = pokemones.filter((pokemon) =>
       pokemon.name.toLowerCase().includes(evento.target.value)
@@ -51,11 +50,11 @@ const Buscador = ({ pokemones }) => {
         <div className="nav1">
           <div className="logostitulo">
             <img className="fotologo" src={Pokeball} alt="logo" />
-            <h1> Pokédex</h1>
+            <h1>Pokédex</h1>
           </div>
-          <div className="logostitulo">
+          <div onClick={ordenar} className="logostitulo">
             <h4>{ordenarPorId ? "#" : "A Z"}</h4>{" "}
-            <img onClick={ordenar} src={Arrow} alt="flecha" />
+            <img src={Arrow} alt="flecha" />
           </div>
         </div>
         <input

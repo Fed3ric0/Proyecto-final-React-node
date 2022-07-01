@@ -1,6 +1,15 @@
 .contenedorDetalles {
-  background-color: aquamarine;
   text-align: center;
+  height: fit-content;
+  width: 96%;
+  position: absolute;
+  background-image: url(../../imagenes/Pokeball.png);
+  background-repeat: no-repeat;
+  background-blend-mode: screen;
+  background-position-x: 90%;
+  background-position-y: 1%;
+  background-size: 300px;
+  padding: 0 2%;
 }
 
 .arriba {
@@ -8,47 +17,99 @@
   justify-content: space-between;
   padding: 2% 10% 0 10%;
   align-items: center;
+  max-width: 900px;
+  margin: auto;
+  padding-bottom: 100px;
 }
-.flechita{
-    filter: invert(1) contrast(3);
+
+.volver {
+  display: flex;
+  align-items: center;
 }
+
+.flechita {
+  filter: invert(1) contrast(3);
+}
+
 .flechaNombre {
-    color: white;
+  color: white;
   display: flex;
   width: 20px;
   gap: 15px;
 }
 
+.flechitaLeft {
+  transform: scaleX(-1);
+}
+
+.fotoPokemon {
+  width: 200px;
+}
+
+.flechitaRight,
+.flechitaLeft {
+  filter: invert(1) contrast(3);
+  width: 10px;
+}
+
+.centrado {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contenedorImgPokemon {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 80px;
+}
+
+.tipos {
+  display: flex;
+  justify-content: center;
+  gap: 5%;
+  color: white;  
+  padding-top: 60px;
+}
+
 .abajo {
   text-align: center;
   background-color: white;
-  margin: 10px;
+  margin: 10px auto;
   border-radius: 15px;
+  padding: 0 10% 10% 10%;
+  max-width: 700px;
 }
+
 .caracteristicas {
   background-color: white;
   display: flex;
-  justify-content: space-between;
-  padding: 0 40px;
+  justify-content: space-evenly;
   align-items: flex-end;
 }
+
 .parejas {
   display: flex;
   align-items: center;
 }
+
 h6,
 p {
   margin: 0;
   padding: 10px;
+  font-size: smaller;
 }
+
 .borde {
   border-left: 1px solid #e0e0e0;
   border-right: 1px solid #e0e0e0;
   padding: 0 10px;
 }
-progress {
-  width: 100%;
-}
+
+
+
 .baseStats {
   display: flex;
 }
@@ -58,9 +119,114 @@ progress {
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  width: 100%;
+  width: 95%;
+  margin-right: 10px;
 }
+
+.progress>div {
+  display: flex;
+  height: 10px;
+  width: 100%;
+  border-radius: 10px;
+}
+
+.progress>div>div {
+  height: 10px;
+}
+
+.progressValue{
+  border-radius: 10px 0 0 10px;
+}
+.progressBar{
+  border-radius: 0 10px 10px 0;
+}
+
+
+
 .valores {
   border-left: 1px solid #e0e0e0;
-  padding-left: 20px;
+  padding-left: 10px;
+}
+
+.habilidades {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.rock {
+  background-color: #b69e31;
+}
+
+.ghost {
+  background-color: #70559b;
+}
+
+.steel {
+  background-color: #b7b9d0;
+}
+
+.water {
+  background-color: #649eb6;
+}
+
+.grass {
+  background-color: #74cb48;
+}
+
+.psychic {
+  background-color: #fb5584;
+}
+
+.ice {
+  background-color: #9ad6df;
+}
+
+.dark {
+  background-color: #75574c;
+}
+
+.fairy {
+  background-color: #e69eac;
+}
+
+.normal {
+  background-color: #aaa67f;
+}
+
+.fighting {
+  background-color: #c12239;
+}
+
+.flying {
+  background-color: #a891ec;
+}
+
+.poison {
+  background-color: #a43e9e;
+}
+
+.ground {
+  background-color: #dec16b;
+}
+
+.bug {
+  background-color: #a7b723;
+}
+
+.fire {
+  background-color: #f57d31;
+}
+
+.electric {
+  background-color: #f9cf30;
+}
+
+.dragon {
+ background-color: #7037ff;
+}
+
+span {
+  border-radius: 50px;
+  width: 75px;
 }
