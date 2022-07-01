@@ -2453,7 +2453,7 @@ function App() {
       type: ["Psychic", "Fairy"],
       weight: 54.5,
       height: 1.3,
-      moves: ["Soundproof"],
+      moves: ["Soundproof, ", "Filter"],
       description:
         "The broadness of its hands may be no coincidence—many scientists believe its palms became enlarged specifically for pantomiming.",
       stats: {
