@@ -6,132 +6,146 @@ import Alto from "../../imagenes/Height.svg";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Frame from "../../imagenes/Frame.svg";
+import { useState, useEffect } from "react";
 
-const Detalles = ({ pokemones }) => {
-  const { nombre } = useParams();
-  console.log(nombre);
-  const pokemon = pokemones.find(
-    (pokemon) => pokemon.name.toLowerCase() === nombre
-  );
+const Detalles = () => {
+  const { id } = useParams();
 
-  const pokemonIndex = pokemones.findIndex(
-    (pokemon) => pokemon.name.toLowerCase() === nombre
-  );
+  const [pokemon, setPokemon] = useState({});
 
-  let foto = require(`../../imagenes/${pokemon.name.toLowerCase()}.png`);
+  useEffect(() => {
+    cargarPokemones();
+  });
+
+  const cargarPokemones = async () => {
+    try {
+      const respuesta = await fetch(`http://localhost:1234/pokemon/${id}`);
+
+      if (!respuesta.ok) {
+        throw new Error("Error en el servidor");
+      }
+
+      const pokemonesFetch = await respuesta.json();
+
+      setPokemon(pokemonesFetch);
+    } catch (error) {
+      console.log("No se pudo conectar con el backend");
+    }
+  };
 
   return (
-    <div
-      style={{ backgroundColor: pokemon.color }}
-      className="contenedorDetalles"
-    >
-      <section className="arriba">
-        <div className="flechaNombre">
-          <Link className="volver" to="/">
-            <img className="flechita" src={Flecha} alt="flecha" />
-          </Link>
-          <h1>{pokemon.name}</h1>
+    pokemon.name && (
+      <div className={pokemon.type[0]} id="contenedorDetalles">
+        <section className="arriba">
+          <div className="flechaNombre">
+            <Link className="volver" to="/pokedex">
+              <img className="flechita" src={Flecha} alt="flecha" />
+            </Link>
+            <h1>{pokemon.name.english}</h1>
+          </div>
+          <h5 style={{ color: "white" }}>#{pokemon.id}</h5>
+        </section>
+        <div className="contenedorImgPokemon">
+          {pokemon.prev ? (
+            <Link
+              className="flechitaLeft"
+              to={`/pokedex/detalles/${pokemon.prev}`}
+            >
+              <img src={Frame} alt="flecha" />
+            </Link>
+          ) : (
+            <div></div>
+          )}
+          <img className="fotoPokemon" src={pokemon.image.hires} alt="foto" />
+          {pokemon.next ? (
+            <Link
+              className="flechitaRight"
+              to={`/pokedex/detalles/${pokemon.next}`}
+            >
+              <img src={Frame} alt="flecha" />
+            </Link>
+          ) : (
+            <div></div>
+          )}
         </div>
-        <h5 style={{ color: "white" }}>#{pokemon.id}</h5>
-      </section>
-      <div className="contenedorImgPokemon">
-        {pokemonIndex > 0 ? (
-          <Link
-            className="flechitaLeft"
-            to={`/detalles/${pokemones[pokemonIndex - 1].name.toLowerCase()}`}
-          >
-            <img src={Frame} alt="flecha" />
-          </Link>
-        ) : (
-          <div></div>
-        )}
-        <img className="fotoPokemon" src={foto} alt="foto" />
-        {pokemonIndex < pokemones.length - 1 ? (
-          <Link
-            className="flechitaRight"
-            to={`/detalles/${pokemones[pokemonIndex + 1].name.toLowerCase()}`}
-          >
-            <img src={Frame} alt="flecha" />
-          </Link>
-        ) : (
-          <div></div>
-        )}
+        <div></div>
+        <section className="abajo">
+          <p className="tipos">
+            {pokemon.type.map((type) => (
+              <span className={type.toLowerCase()}>{type}</span>
+            ))}
+          </p>
+
+          <h3>About</h3>
+
+          <section className="caracteristicas">
+            <div className="centrado">
+              <div className="parejas">
+                <img src={Peso} alt="peso" />
+                <p>{pokemon.profile.weight}</p>
+              </div>
+              <h6>Weight</h6>
+            </div>
+            <div className="borde centrado">
+              <div className="parejas">
+                <img src={Alto} alt="alto" />
+                <p>{pokemon.profile.height}</p>
+              </div>
+              <h6>Height</h6>
+            </div>
+            <div className="centrado">
+              <p>{pokemon.profile.ability[0]}</p>
+              <h6>Moves</h6>
+            </div>
+          </section>
+          <p>{pokemon.description}</p>
+          <section>
+            <h3>Base stats</h3>
+            <div className="baseStats">
+              <div className="habilidades">
+                {Object.entries(pokemon.base).map(
+                  ([nombreDeLaProp, valorDeLaProp]) => (
+                    <p>{nombreDeLaProp}</p>
+                  )
+                )}
+              </div>
+              <div className="valores">
+                {Object.entries(pokemon.base).map(
+                  ([nombreDeLaProp, valorDeLaProp]) => (
+                    <p>{valorDeLaProp}</p>
+                  )
+                )}
+              </div>
+              <div className="progress">
+                {Object.entries(pokemon.base).map(
+                  ([nombreDeLaProp, valorDeLaProp]) => (
+                    <div>
+                      <div
+                        id="progressValue"
+                        className={pokemon.type[0]}
+                        style={{
+                          width: `${valorDeLaProp / 2}%`,
+                        }}
+                      ></div>
+                      <div
+                        id="progressBar"
+                        className={pokemon.type[0]}
+                        style={{
+                          opacity: "0.1",
+                          flex: "1",
+                        }}
+                      ></div>
+                    </div>
+                  )
+                )}
+              </div>
+            </div>
+          </section>
+
+          {/* <div>{Object.entries(pokemon.evolution)}</div> */}
+        </section>
       </div>
-      <div></div>
-      <section className="abajo">
-        <p className="tipos">
-          {pokemon.type.map((type) => (
-            <span className={type.toLowerCase()}>{type}</span>
-          ))}
-        </p>
-
-        <h3 style={{ color: pokemon.color }}>About</h3>
-
-        <section className="caracteristicas">
-          <div className="centrado">
-            <div className="parejas">
-              <img src={Peso} alt="peso" />
-              <p>{pokemon.weight}kg</p>
-            </div>
-            <h6>Weight</h6>
-          </div>
-          <div className="borde centrado">
-            <div className="parejas">
-              <img src={Alto} alt="alto" />
-              <p>{pokemon.height}m</p>
-            </div>
-            <h6>Height</h6>
-          </div>
-          <div className="centrado">
-            <p>{pokemon.moves}</p>
-            <h6>Moves</h6>
-          </div>
-        </section>
-        <p>{pokemon.description}</p>
-        <section>
-          <h3 style={{ color: pokemon.color }}>Base stats</h3>
-          <div className="baseStats">
-            <div className="habilidades">
-              {Object.entries(pokemon.stats).map(
-                ([nombreDeLaProp, valorDeLaProp]) => (
-                  <p style={{ color: pokemon.color }}>{nombreDeLaProp}</p>
-                )
-              )}
-            </div>
-            <div className="valores">
-              {Object.entries(pokemon.stats).map(
-                ([nombreDeLaProp, valorDeLaProp]) => (
-                  <p>{valorDeLaProp}</p>
-                )
-              )}
-            </div>
-            <div className="progress">
-              {Object.entries(pokemon.stats).map(
-                ([nombreDeLaProp, valorDeLaProp]) => (
-                  <div>
-                    <div
-                      className="progressValue"
-                      style={{
-                        width: `${valorDeLaProp / 2}%`,
-                        backgroundColor: pokemon.color,
-                      }}
-                    ></div>
-                    <div
-                      className="progressBar"
-                      style={{
-                        backgroundColor: pokemon.color,
-                        opacity: "0.1",
-                        flex: "1",
-                      }}
-                    ></div>
-                  </div>
-                )
-              )}
-            </div>
-          </div>
-        </section>
-      </section>{" "}
-    </div>
+    )
   );
 };
 

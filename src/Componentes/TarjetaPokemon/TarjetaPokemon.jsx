@@ -3,30 +3,24 @@ import "./TarjetaPokemon.css";
 import { Link } from "react-router-dom";
 
 const TarjetaPokemon = ({ pokemon }) => {
-  let foto = require(`../../imagenes/${pokemon.name.toLowerCase()}.png`);
   return (
-    <Link
-      className="linkDetalles"
-      to={`detalles/${pokemon.name.toLowerCase()}`}
-    >
-      <li className="tarjetaPk" style={{ borderColor: pokemon.color }}>
+    <Link className="linkDetalles" to={`detalles/${pokemon.id}`}>
+      <li id="tarjetATK" className={pokemon.type[0]}>
         <div className="contenedorPokemones">
-          <p style={{ color: pokemon.color }} className="tarjetaId">
+          <p id="tarjetaId" className={pokemon.type[0] + "_id"}>
             #{pokemon.id}
           </p>
-
           <center>
-            <img className="tarjetaImg" src={foto} alt="foto" />
+            {
+              <img
+                className="tarjetaImg"
+                src={pokemon.image?.hires}
+                alt="foto"
+              />
+            }
           </center>
-
-          <p
-            style={{
-              backgroundColor: pokemon.color,
-              borderColor: pokemon.color,
-            }}
-            className="tarjetaNombre"
-          >
-            {pokemon.name}
+          <p className={pokemon.type[0] + "_background"} id="tarjetaNombre">
+            {pokemon.name.english}
           </p>
         </div>
       </li>

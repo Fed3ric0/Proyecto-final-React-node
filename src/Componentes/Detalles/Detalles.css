@@ -1,4 +1,4 @@
-.contenedorDetalles {
+#contenedorDetalles {
   text-align: center;
   height: fit-content;
   width: 96%;
@@ -34,7 +34,6 @@
 .flechaNombre {
   color: white;
   display: flex;
-  width: 20px;
   gap: 15px;
 }
 
@@ -45,6 +44,13 @@
 .fotoPokemon {
   width: 200px;
 }
+
+.fotoPokemon{
+  width: 150px;
+  -webkit-box-reflect: below -25% linear-gradient(to bottom,rgba(0,0,0,0.0), rgba(0,0,0,0.1)) ;  
+  ;
+}
+
 
 .flechitaRight,
 .flechitaLeft {
@@ -100,6 +106,7 @@ p {
   margin: 0;
   padding: 10px;
   font-size: smaller;
+  color: black;
 }
 
 .borde {
@@ -107,8 +114,6 @@ p {
   border-right: 1px solid #e0e0e0;
   padding: 0 10px;
 }
-
-
 
 .baseStats {
   display: flex;
@@ -131,13 +136,13 @@ p {
 }
 
 .progress>div>div {
-  height: 10px;
+  height: 7px;
 }
 
-.progressValue{
+#progressValue{
   border-radius: 10px 0 0 10px;
 }
-.progressBar{
+#progressBar{
   border-radius: 0 10px 10px 0;
 }
 
@@ -154,77 +159,78 @@ p {
   align-items: flex-end;
 }
 
-.rock {
+.Rock, .rock {
   background-color: #b69e31;
 }
 
-.ghost {
+.Ghost, .ghost {
   background-color: #70559b;
 }
 
-.steel {
+.Steel, .steel {
   background-color: #b7b9d0;
 }
 
-.water {
+.Water, .water {
   background-color: #649eb6;
 }
 
-.grass {
+.Grass, .grass {
   background-color: #74cb48;
 }
 
-.psychic {
+.Psychic, .psychic{
   background-color: #fb5584;
 }
 
-.ice {
+.Ice, .ice {
   background-color: #9ad6df;
 }
 
-.dark {
+.Dark, .dark {
   background-color: #75574c;
 }
 
-.fairy {
+.Fairy, .fairy {
   background-color: #e69eac;
 }
 
-.normal {
+.Normal, .normal {
   background-color: #aaa67f;
 }
 
-.fighting {
+.Fighting, .fighting {
   background-color: #c12239;
 }
 
-.flying {
+.Flying, .flying {
   background-color: #a891ec;
 }
 
-.poison {
+.Poison, .poison {
   background-color: #a43e9e;
 }
 
-.ground {
+.Ground, .ground {
   background-color: #dec16b;
 }
 
-.bug {
+.Bug, .bug {
   background-color: #a7b723;
 }
 
-.fire {
+.Fire, .fire {
   background-color: #f57d31;
 }
 
-.electric {
+.Electric, .electric {
   background-color: #f9cf30;
 }
 
-.dragon {
+.Dragon, .dragon {
  background-color: #7037ff;
 }
+
 
 span {
   border-radius: 50px;
