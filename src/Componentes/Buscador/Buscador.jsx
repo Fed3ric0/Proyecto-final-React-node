@@ -31,23 +31,26 @@ const Buscador = () => {
       setlistaDePokemones(pokemonesFetch);
       setPokemones(pokemonesFetch);
     } catch (error) {
-      console.log("No se pudo conectar con el backend");
+      console.log("No se pudo conectar con backend");
     }
   };
 
   const filtrar = (evento) => {
     const listaDePokemones = pokemones.filter((pokemon) =>
-      pokemon.name.english
-        .toLowerCase()
-        .includes(evento.target.value.toLowerCase())
+      pokemon.nombre.toLowerCase().includes(evento.target.value.toLowerCase())
     );
     setlistaDePokemones(listaDePokemones);
   };
   const mostrarPokemones = () => {
     return listaDePokemones.map((elemento) => (
-      <TarjetaPokemon key={elemento.id} pokemon={elemento} />
+      <TarjetaPokemon
+        key={elemento.id}
+        pokemon={elemento}
+        setlistaDePokemones={setlistaDePokemones}
+      />
     ));
   };
+
   const ordenar = () => {
     if (ordenarPorId === false) {
       const listaOrdenada = pokemones.sort((a, b) => {
@@ -57,8 +60,8 @@ const Buscador = () => {
       setOrdenarPorId(true);
     } else {
       const listaOrdenada = pokemones.sort(function (a, b) {
-        let x = a.name.english.toLowerCase();
-        let y = b.name.english.toLowerCase();
+        let x = a.nombre.toLowerCase();
+        let y = b.nombre.toLowerCase();
         if (x < y) {
           return -1;
         }
@@ -84,7 +87,6 @@ const Buscador = () => {
             <img src={Arrow} alt="flecha" />
           </div>
         </div>
-
         <input
           className="iconoPlaceHolder"
           type="search"

@@ -1,3 +1,21 @@
+.boton-borrar{
+  position: absolute;
+  margin: 10px;
+  /* z-index: 1; */
+  top: 0%;
+  right: 0%;
+  display: flex;
+  background-color: rgb(245, 245, 245);
+  border-radius: 15px;
+  width: 22px;
+  height: 22px;
+  border-color: white;
+  color: #00000094;
+}
+.div-relativo{
+  position: relative;
+}
+
 .contenedorPokemones {
   border-radius: 5%;
 }
@@ -16,7 +34,7 @@
 #tarjetaId {
   grid-area: id;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   margin: 0;
   padding: 10px;
 }

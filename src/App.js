@@ -8,6 +8,7 @@ import Registro from "./Componentes/Registro/Registro";
 import AgregarPokemon from "./Componentes/AgregarPokemon/AgregarPokemon";
 // import pokedex from "./pokedex.json";
 import ScrollToTop from "./Componentes/ScrollToTop/ScrollToTop";
+import NotFound from "./Componentes/NotFound/NotFound";
 
 function App() {
   // const [listaDePokemones, setlistaDePokemones] = useState([]);
@@ -50,6 +51,7 @@ function App() {
             path="pokedex/detalles/:id"
             element={<Detalles pokemones={pokemones} />}
           />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </div>

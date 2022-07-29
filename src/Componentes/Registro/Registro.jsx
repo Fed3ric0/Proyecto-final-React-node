@@ -5,8 +5,8 @@ import "./Registro.css";
 import { useNavigate } from "react-router-dom";
 
 const Registro = () => {
-  const [name, setName] = useState("");
-  const [mail, setMail] = useState("");
+  const [nombre, setName] = useState("");
+  const [email, setMail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
   let navigate = useNavigate();
@@ -24,11 +24,12 @@ const Registro = () => {
     setPasswordConfirmation(evento.target.value);
   };
 
-  const registerUsuario = async () => {
+  const registerUsuario = async (e) => {
+    e.preventDefault();
     try {
       const respuesta = await fetch("http://localhost:1234/register", {
         method: "POST",
-        body: JSON.stringify({ name, mail, password, passwordConfirmation }),
+        body: JSON.stringify({ nombre, email, password, passwordConfirmation }),
         headers: {
           "Content-Type": "application/json",
         },
@@ -38,8 +39,8 @@ const Registro = () => {
         throw new Error("Error en el servidor");
       }
 
-      const usuarioFetch = await respuesta.json();
-      console.log(usuarioFetch);
+      // const usuarioFetch = await respuesta.json();
+      // console.log(usuarioFetch);
 
       navigate("/", { replace: true });
     } catch (error) {
@@ -51,7 +52,7 @@ const Registro = () => {
   return (
     <div className="contacto-form">
       <h1>Register</h1>
-      <form action="/aca_se_envia_ladata.com">
+      <form>
         <div className="nombre-correo-mensaje">
           <div className="nombre-correo">
             <label for="name">Nombre</label>

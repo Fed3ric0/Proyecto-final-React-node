@@ -5,13 +5,14 @@ import ".//AgregarPokemon.css";
 import { useNavigate } from "react-router-dom";
 
 const Agregar = () => {
-  const [nombre, setNonmbre] = useState("");
+  const [nombre, setNombre] = useState("");
   const [id, setId] = useState("");
   const [tipo1, setTipo1] = useState("");
   const [tipo2, setTipo2] = useState("");
 
   const [HP, setHP] = useState("");
   const [ATK, setATK] = useState("");
+  const [DEF, setDEF] = useState("");
   const [SATK, setSATK] = useState("");
   const [SDEF, setSDEF] = useState("");
   const [SPD, setSPD] = useState("");
@@ -21,14 +22,15 @@ const Agregar = () => {
   const [altura, setAltura] = useState("");
   const [movimiento1, setMovimiento1] = useState("");
   const [movimiento2, setMovimiento2] = useState("");
+  const [imagen, setImagen] = useState("");
 
   let navigate = useNavigate();
 
   const handleChangeNombre = (evento) => {
-    setNonmbre(evento.target.value);
+    setNombre(evento.target.value);
   };
   const handleChangeId = (evento) => {
-    setId(evento.target.value);
+    setId(+evento.target.value);
   };
   const handleChangeTipo1 = (evento) => {
     setTipo1(evento.target.value);
@@ -37,28 +39,31 @@ const Agregar = () => {
     setTipo2(evento.target.value);
   };
   const handleChangeHP = (evento) => {
-    setHP(evento.target.value);
+    setHP(+evento.target.value);
   };
   const handleChangeATK = (evento) => {
-    setATK(evento.target.value);
+    setATK(+evento.target.value);
+  };
+  const handleChangeDEF = (evento) => {
+    setDEF(+evento.target.value);
   };
   const handleChangeSATK = (evento) => {
-    setSATK(evento.target.value);
+    setSATK(+evento.target.value);
   };
   const handleChangeSDEF = (evento) => {
-    setSDEF(evento.target.value);
+    setSDEF(+evento.target.value);
   };
   const handleChangeSPD = (evento) => {
-    setSPD(evento.target.value);
+    setSPD(+evento.target.value);
   };
   const handleChangeDescripcion = (evento) => {
     setDescripcion(evento.target.value);
   };
   const handleChangeConfirmPeso = (evento) => {
-    setPeso(evento.target.value);
+    setPeso(+evento.target.value);
   };
   const handleChangeConfirmAltura = (evento) => {
-    setAltura(evento.target.value);
+    setAltura(+evento.target.value);
   };
   const handleChangeConfirmMovimiento1 = (evento) => {
     setMovimiento1(evento.target.value);
@@ -66,8 +71,12 @@ const Agregar = () => {
   const handleChangeConfirmMovimiento2 = (evento) => {
     setMovimiento2(evento.target.value);
   };
+  const handleChangeConfirmImagen = (evento) => {
+    setImagen(evento.target.value);
+  };
 
-  const registerPokemon = async () => {
+  const registerPokemon = async (e) => {
+    e.preventDefault();
     try {
       const respuesta = await fetch("http://localhost:1234/pokemon", {
         method: "POST",
@@ -78,6 +87,7 @@ const Agregar = () => {
           tipo2,
           HP,
           ATK,
+          DEF,
           SATK,
           SDEF,
           SPD,
@@ -86,8 +96,10 @@ const Agregar = () => {
           altura,
           movimiento1,
           movimiento2,
+          imagen,
         }),
         headers: {
+          Authorization: localStorage.getItem("token"),
           "Content-Type": "application/json",
         },
       });
@@ -99,17 +111,17 @@ const Agregar = () => {
       const usuarioFetch = await respuesta.json();
       console.log(usuarioFetch);
 
-      navigate("/", { replace: true });
+      navigate(`/pokedex/detalles/${id}`, { replace: true });
     } catch (error) {
       console.log("No se pudo conectar con el backend");
-      alert("Mail o contraseña incorrecta");
+      alert("No se pudo agregar Pokemon");
     }
   };
 
   return (
     <div className="contacto-form">
       <h1>Agregar datos de Pokemon</h1>
-      <form action="/aca_se_envia_ladata.com">
+      <form>
         <div className="nombre-correo-mensaje">
           <div className="nombre-correo">
             <label for="nombre">Nombre</label>
@@ -126,13 +138,14 @@ const Agregar = () => {
               type={"id"}
               placeholder="Ingresar Id"
             />
-            <label for="tipo1">Tipo1</label>
+            <label for="tipo1">Tipo 1</label>
             <input
               onChange={handleChangeTipo1}
               className="input-largo"
               type={"tipo1"}
               placeholder="Ingresar tipo"
             />
+            <label for="tipo1">Tipo 2</label>
             <input
               onChange={handleChangeTipo2}
               className="input-largo"
@@ -152,6 +165,13 @@ const Agregar = () => {
               className="input-largo"
               type={"ATK"}
               placeholder="Ingresar ATK"
+            />
+            <label for="DEF">DEF</label>
+            <input
+              onChange={handleChangeDEF}
+              className="input-largo"
+              type={"DEF"}
+              placeholder="Ingresar DEF"
             />
             <label for="SATK">SATK</label>
             <input
@@ -181,32 +201,40 @@ const Agregar = () => {
               type={"descripcion"}
               placeholder="Ingresar descripcion"
             />
-            <label for="peso">Ingresar peso</label>
+            <label for="peso">Peso</label>
             <input
               onChange={handleChangeConfirmPeso}
               className="input-largo"
               type={"peso"}
               placeholder="Ingresar Peso"
             />
-            <label for="altura">Ingresar altura</label>
+            <label for="altura">Altura</label>
             <input
               onChange={handleChangeConfirmAltura}
               className="input-largo"
               type={"altura"}
               placeholder="Ingresar altura"
             />
-            <label for="movimiento">Ingresar movimiento</label>
+            <label for="movimiento">Movimiento 1</label>
             <input
               onChange={handleChangeConfirmMovimiento1}
               className="input-largo"
               type={"movimiento1"}
               placeholder="Ingresar movimiento"
             />
+            <label for="movimiento2">Movimiento 2</label>
             <input
               onChange={handleChangeConfirmMovimiento2}
               className="input-largo"
               type={"movimiento2"}
               placeholder="Ingresar movimiento"
+            />
+            <label for="imagen">Imagen</label>
+            <input
+              onChange={handleChangeConfirmImagen}
+              className="input-largo"
+              type={"imagen"}
+              placeholder="Ingresar imagen"
             />
           </div>
         </div>

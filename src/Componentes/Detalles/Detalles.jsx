@@ -3,45 +3,46 @@ import "./Detalles.css";
 import Flecha from "../../imagenes/arrow-left.svg";
 import Peso from "../../imagenes/Weight.svg";
 import Alto from "../../imagenes/Height.svg";
-import { useParams } from "react-router-dom";
+import { Navigate, useParams, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Frame from "../../imagenes/Frame.svg";
 import { useState, useEffect } from "react";
 
 const Detalles = () => {
   const { id } = useParams();
-
   const [pokemon, setPokemon] = useState({});
+  const navigate = useNavigate();
 
   useEffect(() => {
-    cargarPokemones();
-  });
+    const cargarPokemones = async () => {
+      try {
+        const respuesta = await fetch(`http://localhost:1234/pokemon/${id}`);
 
-  const cargarPokemones = async () => {
-    try {
-      const respuesta = await fetch(`http://localhost:1234/pokemon/${id}`);
+        if (!respuesta.ok) {
+          throw new Error("Error en el servidor");
+        }
 
-      if (!respuesta.ok) {
-        throw new Error("Error en el servidor");
+        const pokemonesFetch = await respuesta.json();
+
+        setPokemon(pokemonesFetch);
+      } catch (error) {
+        navigate("/notfound", { replace: true });
+        console.log("No se pudo conectar con el backend");
+        // AGREGAR RUTA A NAVIGATE
       }
-
-      const pokemonesFetch = await respuesta.json();
-
-      setPokemon(pokemonesFetch);
-    } catch (error) {
-      console.log("No se pudo conectar con el backend");
-    }
-  };
+    };
+    cargarPokemones();
+  }, [id]);
 
   return (
-    pokemon.name && (
-      <div className={pokemon.type[0]} id="contenedorDetalles">
+    pokemon.nombre && (
+      <div className={pokemon.tipo[0]} id="contenedorDetalles">
         <section className="arriba">
           <div className="flechaNombre">
             <Link className="volver" to="/pokedex">
               <img className="flechita" src={Flecha} alt="flecha" />
             </Link>
-            <h1>{pokemon.name.english}</h1>
+            <h1>{pokemon.nombre}</h1>
           </div>
           <h5 style={{ color: "white" }}>#{pokemon.id}</h5>
         </section>
@@ -56,7 +57,7 @@ const Detalles = () => {
           ) : (
             <div></div>
           )}
-          <img className="fotoPokemon" src={pokemon.image.hires} alt="foto" />
+          <img className="fotoPokemon" src={pokemon.imagen} alt="foto" />
           {pokemon.next ? (
             <Link
               className="flechitaRight"
@@ -71,8 +72,8 @@ const Detalles = () => {
         <div></div>
         <section className="abajo">
           <p className="tipos">
-            {pokemon.type.map((type) => (
-              <span className={type.toLowerCase()}>{type}</span>
+            {pokemon.tipo.map((tipo) => (
+              <span className={tipo.toLowerCase()}>{tipo}</span>
             ))}
           </p>
 
@@ -82,23 +83,27 @@ const Detalles = () => {
             <div className="centrado">
               <div className="parejas">
                 <img src={Peso} alt="peso" />
-                <p>{pokemon.profile.weight}</p>
+                <p>{pokemon.peso}</p>
               </div>
               <h6>Weight</h6>
             </div>
             <div className="borde centrado">
               <div className="parejas">
                 <img src={Alto} alt="alto" />
-                <p>{pokemon.profile.height}</p>
+                <p>{pokemon.altura}</p>
               </div>
               <h6>Height</h6>
             </div>
             <div className="centrado">
-              <p>{pokemon.profile.ability[0]}</p>
+              <p>
+                {pokemon.habilidades.map((movimiento) => {
+                  return <div>{movimiento}</div>;
+                })}
+              </p>
               <h6>Moves</h6>
             </div>
           </section>
-          <p>{pokemon.description}</p>
+          <p>{pokemon.descripcion}</p>
           <section>
             <h3>Base stats</h3>
             <div className="baseStats">
@@ -122,14 +127,14 @@ const Detalles = () => {
                     <div>
                       <div
                         id="progressValue"
-                        className={pokemon.type[0]}
+                        className={pokemon.tipo[0]}
                         style={{
                           width: `${valorDeLaProp / 2}%`,
                         }}
                       ></div>
                       <div
                         id="progressBar"
-                        className={pokemon.type[0]}
+                        className={pokemon.tipo[0]}
                         style={{
                           opacity: "0.1",
                           flex: "1",
