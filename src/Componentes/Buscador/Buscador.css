@@ -70,9 +70,10 @@ ul {
   background-image: url(../../imagenes/add.png);
   background-size: 150px;
   background-repeat: no-repeat;
-  background-position: center;
-  height: 100%;
-  width: 100%;
+  background-position: bottom;
+  background-position-y: 15px;
+  height: 98.2%;
+  width: 98.5%;
   border-radius: 9px;
   border: 2px solid rgb(113, 113, 113);
 }
